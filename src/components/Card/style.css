@@ -1,0 +1,15 @@
+tr {
+    border-bottom: none;
+}
+
+td, th {
+    padding: 5px 5px;
+}
+
+#houseThumbnail {
+    margin: 10px;    
+}
+
+#cardText {
+    height: 100%;
+}
