@@ -1,59 +1,48 @@
 import React, { Component } from "react";
 import API from '../../utils/API'
 import Nav from "../Nav"
-import Card from "../Card"
 import "./style.css";
 
 
 class MainComponent extends Component {
     state = {
-        homes: [],
+        allHomes: [],
     };
 
     componentDidMount() {
         API.getData()
             .then(res => {
-                console.log(res.data)
-                this.setState({ homes: res.data.Homes })
+                this.setState({ allHomes: res.data.Homes })
             })
     }
 
-    // getData = () => {
-    //     API.getData()
-    //     .then(res => {
-    //         console.log(res.data)
-    //         this.setState({ homes: res.data.Homes })
-    //     })
-    //     .catch(err => console.log(err))
-    // } 
+    filterData = search => {
+            console.log(search)
+                API.getData()
+                .then(res => {
+                    if(!search){
+                        this.setState({ allHomes: res.data.Homes })
+                    } else {
+                        let filteredHomes = res.data.Homes.filter((home) => {
+                            return (home.Description.toLowerCase().includes(search.toLowerCase()) ||
+                            home.HomeId.toLowerCase().includes(search.toLowerCase()))})
+                        this.setState({ allHomes: filteredHomes })
+                    }
+                    
+                })
+            
+        
+    }
 
-    // handleInputChange = event => {
-    //     const { name, value } = event.target;
-    //     this.setState({
-    //         [name]: value
-    //     });
-
-    // };
-
-    // handleButttonSubmit = (event) => {
-    //     this.setState({ city: event })
-    //     this.getWeather(event);
-    // };
 
     render() {
 
         return (
             <div id="mainContent">
-                <Nav />
-                {this.state.homes.map(home => (
-                    <Card
-                    key={home.Id}
-                    id={home.Id}
-                    name={home.Description}
-                    modelNumber={home.HomeId}
-                    thumbnail={home.ThumbnailImage}
-                    ></Card>
-                ))}
+                <Nav 
+                allHomes={this.state.allHomes}
+                filterData={this.filterData}
+                />
             </div>
         );
     }
