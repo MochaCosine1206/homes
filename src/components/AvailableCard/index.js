@@ -45,7 +45,8 @@ export function AvailableCard(props) {
                             </Table>
                     </Grid>
                     <Grid item xs>
-                        <img id="houseThumbnail" src={props.ThumbnailImage || "https://via.placeholder.com/200X150"} alt="..." />
+                        {/* unfortunately the thumbnail links don't work, i used a placeholder if the link isn't active */}
+                        <img id="houseThumbnail" src={props.ThumbnailImage || "https://via.placeholder.com/200X150"} alt="House Thumbnail Image" />
                     </Grid>
                     </Grid>
                 </div>

@@ -12,6 +12,7 @@ class MainComponent extends Component {
     componentDidMount() {
         API.getData()
             .then(res => {
+                //get all data on mount
                 this.setState({ allHomes: res.data.Homes })
             })
     }
@@ -20,6 +21,7 @@ class MainComponent extends Component {
             console.log(search)
                 API.getData()
                 .then(res => {
+                    //if there is a search term, filter results by the search result
                     if(!search){
                         this.setState({ allHomes: res.data.Homes })
                     } else {
@@ -37,6 +39,7 @@ class MainComponent extends Component {
     filterFeatures = selection => {
             API.getData()
             .then(res => {
+                //if the selected array is defined, filter the data by feature chosen
                 if(selection === undefined || selection.length == 0){
                     this.setState({ allHomes: res.data.Homes })
                 } else {
@@ -57,8 +60,11 @@ class MainComponent extends Component {
             <div id="mainContent">
                 <ContentContainer 
                 allHomes={this.state.allHomes}
+                //function to filter by name and model
                 filterData={this.filterData}
+                //functino to filter by feature
                 filterFeatures={this.filterFeatures}
+                // get all of the features, and reduce the arrays to one sorted array without duplicates, send as props
                 allFeatures={[...[...new Set(this.state.allHomes.map(home => home.Features).flat())]]}
                 />
             </div>
