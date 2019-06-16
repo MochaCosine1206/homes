@@ -2,7 +2,7 @@
   "name": "homes",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mochacosine1206.github.io/homes/",
+  "homepage": "https://mochacosine1206.github.io/homes",
   "dependencies": {
     "@material-ui/core": "^4.1.1",
     "@material-ui/icons": "^4.2.0",
