@@ -1,0 +1,17 @@
+#houseCards {
+    border-radius: 0px;
+}
+
+#cardName {
+    margin-left: 40px;
+    font-size: 18px;
+}
+
+
+#houseThumbnail {
+    margin: 10px;    
+}
+
+#cardText {
+    height: 100%;
+}

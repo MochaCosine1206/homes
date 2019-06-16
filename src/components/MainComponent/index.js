@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from '../../utils/API'
-import Nav from "../Nav"
+import ContentContainer from "../ContentContainer"
 import "./style.css";
 
 
@@ -34,14 +34,32 @@ class MainComponent extends Component {
         
     }
 
+    filterFeatures = selection => {
+            API.getData()
+            .then(res => {
+                if(selection === undefined || selection.length == 0){
+                    this.setState({ allHomes: res.data.Homes })
+                } else {
+                    let filteredHomes = res.data.Homes.filter((home) => {
+                        return (home.Features.includes(...selection) )})
+                    this.setState({ allHomes: filteredHomes })
+                }
+                
+            })
+        
+    
+}
+
 
     render() {
 
         return (
             <div id="mainContent">
-                <Nav 
+                <ContentContainer 
                 allHomes={this.state.allHomes}
                 filterData={this.filterData}
+                filterFeatures={this.filterFeatures}
+                allFeatures={[...[...new Set(this.state.allHomes.map(home => home.Features).flat())]]}
                 />
             </div>
         );
