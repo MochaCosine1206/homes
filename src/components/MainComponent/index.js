@@ -65,7 +65,7 @@ class MainComponent extends Component {
                 //functino to filter by feature
                 filterFeatures={this.filterFeatures}
                 // get all of the features, and reduce the arrays to one sorted array without duplicates, send as props
-                allFeatures={[...[...new Set(this.state.allHomes.map(home => home.Features).flat())]]}
+                allFeatures={[...[...new Set(this.state.allHomes.map(home => home.Features).flat().sort())]]}
                 />
             </div>
         );
